@@ -7,6 +7,6 @@
         public string Owner_name { get; set; }
         public DateTime Entry_time { get; set; }
         public DateTime Exit_time { get; set; }
-        public bool Total_payment { get; set; }
+        public double Total_payment { get; set; }
     }
 }
