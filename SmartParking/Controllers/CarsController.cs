@@ -18,36 +18,65 @@ namespace SmartParking.Controllers
 
         // GET api/<CarController>/5
         [HttpGet("{id}")]
-        public Car Get(int id)
+        public ActionResult Get(int id)
         {
-            return cars.Find(e => e.Id == id);
+            var c = cars.Find(e => e.Id == id);
+            if (c == null)
+            {
+                return NotFound();
+            }
+            return Ok(c);
         }
+            
 
         // POST api/<CarController>
         [HttpPost]
-        public void Post([FromBody] Car value)
+        public ActionResult Post([FromBody] Car value)
         {
-            cars.Add(value);
+            var car=cars.Find(c=> c.Id == value.Id);
+            if (car == null)
+            {
+                cars.Add(value);
+                return Ok(value);
+            }
+            return Conflict();
         }
 
         // PUT api/<CarController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Car value)
+        public ActionResult Put(int id, [FromBody] Car value)
         {
-            var index = cars.FindIndex(e => e.Id == id);
-            cars[index].License_num = value.License_num;
-            cars[index].Owner_name = value.Owner_name;
-            cars[index].Entry_time = value.Entry_time;
-            cars[index].Exit_time = value.Exit_time;
-            cars[index].Total_payment = value.Total_payment;
+            var car = cars.Find(c => c.Id == value.Id);
+            if(car == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                car.License_num = value.License_num;
+                car.Owner_name = value.Owner_name;
+                car.Entry_time = value.Entry_time;
+                car.Exit_time = value.Exit_time;
+                car.Total_payment = value.Total_payment;
+                return Ok(car);
+
+            }
+       
         }
 
         // DELETE api/<CarController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
-            var toDelite = cars.Find(e => e.Id == id);
-            cars.Remove(toDelite);
+            var car = cars.Find(e => e.Id == id);
+            if (car == null)
+                return BadRequest();
+            else
+            {
+                cars.Remove(car);
+                return Ok();
+
+            }
         }
     }
 }
