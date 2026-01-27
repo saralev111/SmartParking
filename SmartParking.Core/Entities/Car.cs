@@ -1,4 +1,4 @@
-﻿namespace SmartParking
+﻿namespace SmartParking.Core.Entities
 {
     public class Car
     {
@@ -8,5 +8,6 @@
         public DateTime Entry_time { get; set; }
         public DateTime Exit_time { get; set; }
         public double Total_payment { get; set; }
+        public Spot Spot { get; set; }
     }
 }

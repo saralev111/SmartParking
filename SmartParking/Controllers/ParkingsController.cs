@@ -1,13 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmartParking.Core.Services;
+using SmartParking.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace SmartParking.Controllers
+namespace SmartParking.Entities
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ParkingsController : ControllerBase
     {
+        private readonly IParkingService _context;
+
+        public ParkingsController(IParkingService context)
+        {
+            _context = context;
+        }
         // GET: api/<ParkingsController>
         [HttpGet]
         public IEnumerable<string> Get()

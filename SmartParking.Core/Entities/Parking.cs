@@ -1,4 +1,4 @@
-﻿namespace SmartParking
+﻿namespace SmartParking.Core.Entities
 {
     public class Parking
     {

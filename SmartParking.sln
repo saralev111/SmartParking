@@ -5,7 +5,13 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking", "SmartParking\SmartParking.csproj", "{B728C7E0-1DF2-4192-87B1-9F4767E5090C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartParkingTest", "SmartParkingTest\SmartParkingTest.csproj", "{FA8AF7AC-A0E3-46B7-9882-3ADA0A785D37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParkingTest", "SmartParkingTest\SmartParkingTest.csproj", "{FA8AF7AC-A0E3-46B7-9882-3ADA0A785D37}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking.Core", "SmartParking.Core\SmartParking.Core.csproj", "{663B03BF-289A-4C0D-AF30-55E9DEA86002}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking.Data", "SmartParking.Data\SmartParking.Data.csproj", "{B0EA3DCE-BA60-4264-91E2-82737681358C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParking.Service", "SmartParking.Service\SmartParking.Service.csproj", "{E4883D73-EF23-4C2A-966B-F747B3358537}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{FA8AF7AC-A0E3-46B7-9882-3ADA0A785D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA8AF7AC-A0E3-46B7-9882-3ADA0A785D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA8AF7AC-A0E3-46B7-9882-3ADA0A785D37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{663B03BF-289A-4C0D-AF30-55E9DEA86002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663B03BF-289A-4C0D-AF30-55E9DEA86002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663B03BF-289A-4C0D-AF30-55E9DEA86002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663B03BF-289A-4C0D-AF30-55E9DEA86002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EA3DCE-BA60-4264-91E2-82737681358C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EA3DCE-BA60-4264-91E2-82737681358C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EA3DCE-BA60-4264-91E2-82737681358C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EA3DCE-BA60-4264-91E2-82737681358C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4883D73-EF23-4C2A-966B-F747B3358537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4883D73-EF23-4C2A-966B-F747B3358537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4883D73-EF23-4C2A-966B-F747B3358537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4883D73-EF23-4C2A-966B-F747B3358537}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
