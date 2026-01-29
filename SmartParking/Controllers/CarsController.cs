@@ -22,7 +22,7 @@ namespace SmartParking.API.Controllers
 
         // GET: api/Cars
         [HttpGet]
-        public async Task<IEnumerable<CarDTO>> Get() // שינוי מ-Car ל-CarDTO
+        public async Task<IEnumerable<CarDTO>> Get() 
         {
             var cars = await _carService.GetAllAsync();
 
@@ -75,7 +75,6 @@ namespace SmartParking.API.Controllers
                 return NotFound();
             }
 
-            // עדכון רק מה שהמשתמש שלח
             if (!string.IsNullOrEmpty(value.Owner_name))
                 existingCar.Owner_name = value.Owner_name;
             //חישוב עלות החנייה, צריך גם לחשב  לעדכן את זמן היציאה

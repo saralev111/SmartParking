@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public bool Is_occupied { get; set; }
-        public int CarId { get; set; } // כשנרצה לשייך רכב לחניה מסוימת
+        public int CarId { get; set; } 
     }
 }

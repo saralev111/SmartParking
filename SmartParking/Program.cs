@@ -21,10 +21,10 @@ builder.Services.AddScoped<ICarRepository, CarsRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-//builder.Services.AddScoped<IParkingService, ParkingService>();
-//builder.Services.AddScoped<IParkingRepository, ParkingsRepository>();
-//builder.Services.AddScoped<ISpotService, SpotService>();
-//builder.Services.AddScoped<ISpotRepository, SpotsRepository>();
+builder.Services.AddScoped<IParkingService, ParkingService>();
+builder.Services.AddScoped<IParkingRepository, ParkingsRepository>();
+builder.Services.AddScoped<ISpotService, SpotService>();
+builder.Services.AddScoped<ISpotRepository, SpotsRepository>();
 
 builder.Services.AddDbContext<DataContext>();
 

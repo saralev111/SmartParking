@@ -29,22 +29,18 @@ namespace SmartParking.Service
         }
         public async Task<Car> GetByLicenseNumAsync(string licenseNum)
         {
-            // הסרביס פשוט מעביר את הבקשה לריפוזיטורי
             return await _carRepository.GetByLicenseNumAsync(licenseNum);
         }
         public async Task<Car> AddAsync(Car car)
         {
-            // חובה להוסיף await כדי לקבל את האובייקט ולא את ה-Task
             var s = await _carRepository.AddAsync(car);
             await _carRepository.SaveAsync();
             return s;
         }
         public async Task DeleteAsync(int id)
         {
-            // מחיקה מה-context (בזיכרון)
             await _carRepository.DeleteAsync(id);
 
-            // שמירה פיזית במסד הנתונים
             await _carRepository.SaveAsync();
         }
         public async Task<Car> UpdateAsync(int id, Car value)

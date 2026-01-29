@@ -3,7 +3,6 @@
     public class SpotPostModel
     {
         public int Spot_number { get; set; }
-        //public int ParkingId { get; set; }
-        //במידה ונוסיף לישות spot תכונה כזאת
+        public int ParkingId { get; set; }
     }
 }
