@@ -1,68 +1,94 @@
-Parking Management System
-Project Overview
+# Parking Management System
+
+## Project Overview
 
 This is a server-side project built with ASP.NET Core, designed to manage a parking lot.
 The system allows managing parking lots, parking spots, vehicles, and calculating payments based on the duration of the parking.
 
-Project Description
+## Project Description
 
 The system simulates a real-world parking lot.
 When a car enters, it is registered in the system and assigned a parking spot.
 When it exits, the system calculates the payment according to the time spent.
 
 The system includes three main entities:
+* **Parking** – represents the parking lot.
+* **Spot** – represents an individual parking spot.
+* **Car** – represents the vehicle.
 
-Parking – represents the parking lot.
+## Database Structure
 
-Spot – represents an individual parking spot.
+### 1. Parking
+| Column | Description |
+| :--- | :--- |
+| id | Unique identifier for the parking lot |
+| name | Parking lot name |
+| location | Address or location |
+| total_spots | Total number of parking spots |
+| available_spots | Number of available spots |
+| price_per_hour | Parking fee per hour |
 
-Car – represents the vehicle.
+### 2. Spot
+| Column | Description |
+| :--- | :--- |
+| id | Unique identifier for the spot |
+| parking_id | Foreign key referencing Parking |
+| spot_number | Parking spot number |
+| is_occupied | Indicates whether the spot is occupied |
+| vehicle_license_num | Foreign key referencing Car |
 
-Database Structure
-1. Parking
-Column    Description
-id    Unique identifier for the parking lot
-name    Parking lot name
-location    Address or location
-total_spots    Total number of parking spots
-available_spots    Number of available spots
-price_per_hour    Parking fee per hour
-2. Spot
-Column    Description
-id    Unique identifier for the spot
-parking_id    Foreign key referencing Parking
-spot_number    Parking spot number
-is_occupied    Indicates whether the spot is occupied
-vehicle_license_num    Foreign key referencing Car
-3. Car
-Column    Description
-license_num (PK)    Car license number (unique identifier)
-owner_name    Full name of the car owner
-entry_time    Time of entry
-exit_time    Time of exit
-total_payment    Total payment for the parking session
-Main API Endpoints
-Method    Route    Description
-GET    /api/parking    Get all parking lots
-POST    /api/parking    Add a new parking lot
-GET    /api/spots    Retrieve all parking spots
-POST    /api/cars/enter    Register a car entry
-POST    /api/cars/exit    Register a car exit and calculate payment
-GET    /api/logs    Retrieve parking logs
-Business Logic
+### 3. Car
+| Column | Description |
+| :--- | :--- |
+| license_num (PK) | Car license number (unique identifier) |
+| owner_name | Full name of the car owner |
+| entry_time | Time of entry |
+| exit_time | Time of exit |
+| total_payment | Total payment for the parking session |
 
-Car Entry:
-The system finds the first available spot, marks it as occupied, and stores the car’s entry time.
+## Main API Endpoints
+| Method | Route | Description |
+| :--- | :--- | :--- |
+| GET | `/api/parking` | Get all parking lots |
+| POST | `/api/parking` | Add a new parking lot |
+| GET | `/api/spots` | Retrieve all parking spots |
+| POST | `/api/cars/enter` | Register a car entry |
+| POST | `/api/cars/exit` | Register a car exit and calculate payment |
+| GET | `/api/logs` | Retrieve parking logs |
 
-Car Exit:
-The system calculates the total time spent, computes the payment according to the hourly rate, and frees the parking spot.
+## Business Logic
 
-Technologies Used:
+* **Car Entry:** The system finds the first available spot, marks it as occupied, and stores the car’s entry time.
+* **Car Exit:** The system calculates the total time spent, computes the payment according to the hourly rate, and frees the parking spot.
+
+## Technologies Used
 
 1. ASP.NET Core 8.0
-
 2. Entity Framework Core
-
 3. SQL Server
-
 4. Swagger
+
+---
+
+## Installation & Setup
+
+Follow these steps to clone the repository and run the project locally.
+
+### 1. Clone the Repository
+Open your terminal and run the following command to download the project:
+```bash
+git clone [https://github.com/saralev111/SmartParking.git](https://github.com/saralev111/SmartParking.git)
+cd SmartParking
+
+### 2. Run the Backend (.NET Core)
+Navigate to the backend directory, install the required dependencies, and apply the database migrations:
+`cd backend`
+`dotnet restore`
+`dotnet ef database update`
+`dotnet run --project SmartParking`
+
+### 3. Run the Frontend (React / Bun)
+Open a new terminal window, navigate to the frontend directory, install dependencies, and start the development server:
+`cd frontend`
+`npm install`
+`npm run dev`
