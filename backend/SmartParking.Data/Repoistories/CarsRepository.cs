@@ -23,17 +23,17 @@ namespace SmartParking.Data.Repoistories
 
         public async Task<Car> GetByIdAsync(int id)
         {
-            return await _context.cars.FirstAsync(s=>s.Id==id);
+            return await _context.cars.FirstAsync(s => s.Id == id);
         }
 
         public async Task<Car> GetByLicenseNumAsync(string licenseNum)
         {
             return await _context.cars.FirstOrDefaultAsync(c => c.License_num == licenseNum);
         }
-        public async Task<Car> AddAsync(Car value) 
+        public async Task<Car> AddAsync(Car value)
         {
             _context.cars.Add(value);
-            return value; 
+            return value;
         }
 
         public async Task DeleteAsync(int id)
@@ -66,7 +66,7 @@ namespace SmartParking.Data.Repoistories
             if (car != null)
             {
                 _context.cars.Remove(car);
-                _context.SaveChanges(); 
+                _context.SaveChanges();
             }
         }
         public async Task SaveAsync()

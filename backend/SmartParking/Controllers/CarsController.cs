@@ -24,7 +24,7 @@ namespace SmartParking.API.Controllers
         // GET: api/Cars
         [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<CarDTO>> Get() 
+        public async Task<IEnumerable<CarDTO>> Get()
         {
             var cars = await _carService.GetAllAsync();
 
@@ -54,9 +54,7 @@ namespace SmartParking.API.Controllers
                 License_num = value.License_num,
                 Owner_name = value.Owner_name,
             };
-
-            // 2. בדיקה אם הרכב כבר קיים (לפי מספר רישוי למשל)
-            // , אם לא - ניתן לחפש לפי ID
+            //2. בדיקה אם יש רכב עם אותו מספר רישוי כבר קיים במערכת
             var existingCar = await _carService.GetByLicenseNumAsync(value.License_num);
 
             if (existingCar == null)
@@ -80,8 +78,7 @@ namespace SmartParking.API.Controllers
 
             if (!string.IsNullOrEmpty(value.Owner_name))
                 existingCar.Owner_name = value.Owner_name;
-            //חישוב עלות החנייה, צריך גם לחשב  לעדכן את זמן היציאה
-            //existingCar.Total_payment = CalculatePayment(existingCar.Entry_time, existingCar.Exit_time.Value);
+
 
             var updatedCar = await _carService.UpdateAsync(id, existingCar);
             return Ok(_mapper.Map<CarDTO>(updatedCar));
@@ -100,11 +97,11 @@ namespace SmartParking.API.Controllers
             // קריאה לפונקציה ומקבלים חזרה את המחיר
             double payment = await _carService.DeleteAsync(id);
 
-            // מחזירים הודעה מסודרת עם המחיר
+            //  הודעה מסודרת עם המחיר
             return Ok(new
             {
                 Message = "Car exited successfully",
-                PaymentDue = payment.ToString("F2") + " NIS" 
+                PaymentDue = payment.ToString("F2") + " NIS"
             });
         }
     }

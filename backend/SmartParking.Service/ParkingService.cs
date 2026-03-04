@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace SmartParking.Service
 {
-    public class ParkingService: IParkingService
+    public class ParkingService : IParkingService
     {
         private readonly IParkingRepository _parkingRepository;
-        private readonly ISpotRepository _spotRepository; 
+        private readonly ISpotRepository _spotRepository;
 
         public ParkingService(IParkingRepository parkingRepository, ISpotRepository spotRepository)
         {
             _parkingRepository = parkingRepository;
-            _spotRepository = spotRepository; 
+            _spotRepository = spotRepository;
         }
 
         public async Task<IEnumerable<Parking>> GetAllAsync()
@@ -32,11 +32,11 @@ namespace SmartParking.Service
 
         public async Task<Parking> AddAsync(Parking parking)
         {
-            // 1. קודם כל יוצרים את החניון
+            // 1. יצירת חניון
             var p = await _parkingRepository.AddAsync(parking);
-            await _parkingRepository.SaveAsync(); // שומרים כדי לקבל את ה-ID של החניון החדש
+            await _parkingRepository.SaveAsync();
 
-            // 2. עכשיו יוצרים את החניות בתוכו באופן אוטומטי!
+            // 2. יצירת החניות בתוך החניון באופן אוטומטי
             for (int i = 1; i <= parking.Total_spots; i++)
             {
                 var newSpot = new Spot

@@ -47,7 +47,7 @@ namespace SmartParking.Entities
                 Name = value.Name,
                 Location = value.Location,
                 Total_spots = value.Total_spots,
-                Available_spots = value.Total_spots, 
+                Available_spots = value.Total_spots,
                 Price_per_hour = value.Price_per_hour
             };
 
@@ -61,7 +61,6 @@ namespace SmartParking.Entities
             var existingParking = await _parkingService.GetByIdAsync(id);
             if (existingParking == null) return NotFound();
 
-            // עדכון שדות רלוונטיים
             if (!string.IsNullOrEmpty(value.Name)) existingParking.Name = value.Name;
             if (value.Price_per_hour > 0) existingParking.Price_per_hour = value.Price_per_hour;
 

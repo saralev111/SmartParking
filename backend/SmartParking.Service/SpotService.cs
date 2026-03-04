@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmartParking.Service
 {
-    public class SpotService: ISpotService
+    public class SpotService : ISpotService
     {
         private readonly ISpotRepository _spotRepository;
 

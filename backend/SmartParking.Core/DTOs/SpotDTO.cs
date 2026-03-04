@@ -11,8 +11,6 @@ namespace SmartParking.Core.DTOs
         public int Id { get; set; }
         public int Spot_number { get; set; }
         public bool Is_occupied { get; set; }
-        //public int ParkingId { get; set; }
-        // כמו שהמורה עשתה עם ClassDTO בתוך StudentDTO:
         public ParkingDTO Parking { get; set; }
     }
 }

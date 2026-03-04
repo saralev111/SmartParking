@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmartParking.Data.Repoistories
 {
-    public class SpotsRepository: ISpotRepository
+    public class SpotsRepository : ISpotRepository
     {
         private readonly DataContext _context;
 

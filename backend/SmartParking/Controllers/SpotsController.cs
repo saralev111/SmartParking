@@ -46,7 +46,7 @@ namespace SmartParking.Entities
             {
                 Spot_number = value.Spot_number,
                 ParkingId = value.ParkingId,
-                Is_occupied = false, 
+                Is_occupied = false,
             };
 
             var s = await _spotService.AddAsync(spotToAdd);
@@ -71,7 +71,7 @@ namespace SmartParking.Entities
             var spot = await _spotService.GetByIdAsync(id);
             if (spot == null) return NotFound();
 
-            await _spotService.DeleteAsync(id); 
+            await _spotService.DeleteAsync(id);
             return NoContent();
         }
     }

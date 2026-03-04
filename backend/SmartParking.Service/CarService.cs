@@ -9,23 +9,21 @@ using System.Threading.Tasks;
 
 namespace SmartParking.Service
 {
-    public class CarService: ICarService
+    public class CarService : ICarService
     {
         private readonly ICarRepository _carRepository;
-        private readonly ISpotRepository _spotRepository;       
+        private readonly ISpotRepository _spotRepository;
         private readonly IParkingRepository _parkingRepository;
         public CarService(ICarRepository carRepository, ISpotRepository spotRepository, IParkingRepository parkingRepository)
         {
             _carRepository = carRepository;
 
-            _spotRepository = spotRepository;       
+            _spotRepository = spotRepository;
             _parkingRepository = parkingRepository;
         }
         public async Task<IEnumerable<Car>> GetAllAsync()
         {
-            //לוגיקה חישובים
             return await _carRepository.GetAllAsync();
-            // |חישובים
         }
         public async Task<Car> GetByIdAsync(int Id)
         {
@@ -50,7 +48,7 @@ namespace SmartParking.Service
 
             if (freeSpot == null) throw new Exception("No free spot found technically");
 
-            // 4. הוספת הרכב ושמירה (כדי לקבל ID)
+            // 4. הוספת הרכב ושמירה כדי לקבל ID
             car.Entry_time = DateTime.Now;
             var newCar = await _carRepository.AddAsync(car);
             await _carRepository.SaveAsync();
@@ -59,13 +57,11 @@ namespace SmartParking.Service
             freeSpot.Is_occupied = true;
             freeSpot.CarId = newCar.Id;
             await _spotRepository.UpdateAsync(freeSpot.Id, freeSpot);
-            // --- תיקון 1: שמירת השינוי בחניה ---
             await _spotRepository.SaveAsync();
 
             // 6. עדכון מונה החניות בחניון
             parking.Available_spots = parking.Available_spots - 1;
             await _parkingRepository.UpdateAsync(parking.Id, parking);
-            // --- תיקון 2: שמירת השינוי בחניון ---
             await _parkingRepository.SaveAsync();
 
             return newCar;
@@ -89,19 +85,14 @@ namespace SmartParking.Service
 
                 if (parking != null)
                 {
-                    // --- חישוב התשלום ---
+                    //  חישוב התשלום 
                     var timeStayed = DateTime.Now - car.Entry_time;
                     double hoursToCharge = Math.Ceiling(timeStayed.TotalHours); // עיגול תמיד כלפי מעלה
                     paymentToPay = hoursToCharge * parking.Price_per_hour;
 
-
-                    // אם רוצים לעגל כלפי מעלה לשקלים שלמים (אופציונלי)
-                    // paymentToPay = Math.Ceiling(paymentToPay);
-
-                    // עדכון חניון (הגדלת מקומות פנויים)
+                    //  עדכון חניון והגדלת כמות המקומות הפנויים
                     parking.Available_spots += 1;
                     await _parkingRepository.UpdateAsync(parking.Id, parking);
-                    // כאן אפשר לעשות Save, אבל נעשה בסוף
                 }
 
                 // שחרור החניה
@@ -110,12 +101,10 @@ namespace SmartParking.Service
                 await _spotRepository.UpdateAsync(occupiedSpot.Id, occupiedSpot);
             }
 
-            // 3. מחיקת הרכב (אחרי שחישבנו כמה הוא חייב)
+            // 3. אחרי החישוב, ניתן למחוק את הרכב
             await _carRepository.DeleteAsync(id);
 
-            // שמירת כל השינויים (חניון, חניה, מחיקת רכב)
-            // הערה: בגלל שיש כמה repositories, עדיף לשמור בכל אחד או להשתמש ב-UnitOfWork
-            // בפרויקט פשוט זה, נשמור בכל אחד שהשתנה
+            //שמירת השינויים
             await _spotRepository.SaveAsync();
             await _parkingRepository.SaveAsync();
             await _carRepository.SaveAsync();
@@ -124,7 +113,7 @@ namespace SmartParking.Service
         }
         public async Task<Car> UpdateAsync(int id, Car value)
         {
-            var car=await _carRepository.UpdateAsync(id, value);
+            var car = await _carRepository.UpdateAsync(id, value);
             await _carRepository.SaveAsync();
             return car;
         }

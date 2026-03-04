@@ -14,7 +14,6 @@ namespace SmartParking.Core.DTOs
         public DateTime Entry_time { get; set; }
         public DateTime Exit_time { get; set; }
         public double Total_payment { get; set; }
-        // כאן נחזיר רק את מספר החניה או אובייקט DTO של חניה אם צריך
-        //public int SpotId { get; set; }
+
     }
 }

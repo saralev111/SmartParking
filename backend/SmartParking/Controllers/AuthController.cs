@@ -21,7 +21,7 @@ namespace SmartParking.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginModel loginModel)
         {
-         
+
             if (loginModel.UserName == "admin" && loginModel.Password == "1234")
             {
                 var claims = new List<Claim>
@@ -37,7 +37,7 @@ namespace SmartParking.Controllers
                     issuer: _configuration["Jwt:Issuer"],
                     audience: _configuration["Jwt:Audience"],
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(30), 
+                    expires: DateTime.Now.AddMinutes(30),
                     signingCredentials: signinCredentials
                 );
 
@@ -45,7 +45,7 @@ namespace SmartParking.Controllers
                 return Ok(new { Token = tokenString });
             }
 
-            return Unauthorized(); 
+            return Unauthorized();
         }
     }
 }
