@@ -5,6 +5,8 @@
 This is a server-side project built with ASP.NET Core, designed to manage a parking lot.
 The system allows managing parking lots, parking spots, vehicles, and calculating payments based on the duration of the parking.
 
+> **Note:** This project primarily focuses on **Server-side Architecture** and **Business Logic**. The frontend was developed for demonstration purposes only to showcase the API's capabilities.
+
 ## Project Description
 
 The system simulates a real-world parking lot.
@@ -68,6 +70,11 @@ The system includes three main entities:
 3. SQL Server
 4. Swagger
 
+
+## Developed By
+* **Sara Levin**
+* **Hadas Homri**
+
 ---
 
 ## Installation & Setup
@@ -92,3 +99,4 @@ Open a new terminal window, navigate to the frontend directory, install dependen
 `cd frontend`
 `npm install`
 `npm run dev`
+
