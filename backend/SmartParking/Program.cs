@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer; // הוספנו
-using Microsoft.IdentityModel.Tokens; // הוספנו
-using Microsoft.OpenApi.Models; // הוספנו עבור סוואגר
+using Microsoft.AspNetCore.Authentication.JwtBearer; 
+using Microsoft.IdentityModel.Tokens; 
+using Microsoft.OpenApi.Models;
 using SmartParking;
 using SmartParking.Core;
 using SmartParking.Core.Repositories;
@@ -11,7 +11,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
@@ -44,9 +43,7 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
-// ------------------
 
-// --- הגדרות Swagger עם מנעול ---
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -74,9 +71,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-// -------------------------------
 
-// הזרקות התלויות שלך (Services & Repositories) - נשאר אותו דבר
 builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<ICarRepository, CarsRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -88,7 +83,6 @@ builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -99,10 +93,8 @@ app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 
 
-// --- חשוב מאוד: הסדר כאן קריטי! ---
-app.UseAuthentication(); // קודם כל תזדהה (מי אתה?)
-app.UseAuthorization();  // אחר כך נבדוק אם מותר לך (מה מותר לך?)
-// -----------------------------------
+app.UseAuthentication(); 
+app.UseAuthorization();  
 
 app.MapControllers();
 
